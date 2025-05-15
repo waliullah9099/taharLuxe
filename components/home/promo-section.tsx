@@ -38,7 +38,7 @@ export default function PromoSection() {
               Exceptional Quality, Remarkable Value
             </h2>
             <p className="mt-4 text-lg text-muted-foreground">
-              At TaharLuxe, we're committed to offering you the finest products that combine
+              At TaharLuxe, we&lsquo;re committed to offering you the finest products that combine
               premium craftsmanship with contemporary design. Each item in our collection
               is thoughtfully sourced and rigorously tested to ensure exceptional quality.
             </p>

@@ -1,30 +1,19 @@
-"use client";
+"use client"
 
-import type React from "react";
+import type React from "react"
 
-import { useState } from "react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import {
-  BarChart3,
-  Package,
-  ShoppingCart,
-  Users,
-  Settings,
-  LogOut,
-  Menu,
-  X,
-} from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { ModeToggle } from "@/components/ui/mode-toggle";
-import { useAppDispatch, useAppSelector } from "@/lib/redux/hooks";
-import { openCart } from "@/lib/redux/features/cart/cartSlice";
+import { useState } from "react"
+import Link from "next/link"
+import { usePathname } from "next/navigation"
+import { BarChart3, Package, ShoppingCart, Users, Settings, LogOut, Menu, X } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import { ModeToggle } from "@/components/ui/mode-toggle"
 
 interface NavItem {
-  title: string;
-  href: string;
-  icon: React.ElementType;
+  title: string
+  href: string
+  icon: React.ElementType
 }
 
 const navItems: NavItem[] = [
@@ -53,18 +42,11 @@ const navItems: NavItem[] = [
     href: "/dashboard/settings",
     icon: Settings,
   },
-];
+]
 
-export default function DashboardLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  const pathname = usePathname();
-  const [open, setOpen] = useState(false);
-  const cartItems = useAppSelector((state) => state.cart.items);
-  const dispatch = useAppDispatch();
-  const itemCount = cartItems.reduce((acc, item) => acc + item.quantity, 0);
+export default function DashboardLayout({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname()
+  const [open, setOpen] = useState(false)
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -80,19 +62,11 @@ export default function DashboardLayout({
           <SheetContent side="left" className="w-[240px] sm:w-[300px]">
             <div className="flex h-full flex-col">
               <div className="flex h-14 items-center border-b px-4">
-                <Link
-                  href="/"
-                  className="flex items-center gap-2 font-semibold"
-                >
+                <Link href="/" className="flex items-center gap-2 font-semibold">
                   <Package className="h-6 w-6" />
                   <span>E-Commerce</span>
                 </Link>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="ml-auto"
-                  onClick={() => setOpen(false)}
-                >
+                <Button variant="ghost" size="icon" className="ml-auto" onClick={() => setOpen(false)}>
                   <X className="h-5 w-5" />
                   <span className="sr-only">Close</span>
                 </Button>
@@ -104,9 +78,7 @@ export default function DashboardLayout({
                     href={item.href}
                     onClick={() => setOpen(false)}
                     className={`flex items-center gap-3 rounded-md px-3 py-2 text-sm transition-colors ${
-                      pathname === item.href
-                        ? "bg-primary text-primary-foreground"
-                        : "hover:bg-muted"
+                      pathname === item.href ? "bg-primary text-primary-foreground" : "hover:bg-muted"
                     }`}
                   >
                     <item.icon className="h-4 w-4" />
@@ -115,10 +87,7 @@ export default function DashboardLayout({
                 ))}
               </nav>
               <div className="mt-auto p-4">
-                <Button
-                  variant="outline"
-                  className="w-full justify-start gap-2"
-                >
+                <Button variant="outline" className="w-full justify-start gap-2">
                   <LogOut className="h-4 w-4" />
                   Logout
                 </Button>
@@ -129,11 +98,9 @@ export default function DashboardLayout({
         <div className="flex items-center gap-2">
           <Link href="/" className="flex items-center gap-2 font-semibold">
             <Package className="h-6 w-6" />
-            <Link href="/" className="flex items-center">
-              <span className="text-xl font-bold tracking-tight">
-                TaharLuxe
-              </span>
-            </Link>
+             <Link href="/" className="flex items-center">
+                <span className="text-xl font-bold tracking-tight">LuxeStore</span>
+              </Link>
           </Link>
         </div>
         <div className="ml-auto flex items-center gap-2">
@@ -144,26 +111,21 @@ export default function DashboardLayout({
       <div className="flex flex-1">
         {/* Desktop Sidebar */}
         <aside className="hidden w-64 flex-col border-r md:flex">
-          {/* <div className="flex h-14 items-center border-b px-4">
+          <div className="flex h-14 items-center border-b px-4">
             <Link href="/" className="flex items-center gap-2 font-semibold">
               <Package className="h-6 w-6" />
-              
+               <Link href="/" className="flex items-center">
+                              <span className="text-xl font-bold tracking-tight">LuxeStore</span>
+                            </Link>
             </Link>
-          </div> */}
+          </div>
           <nav className="grid gap-2 p-4">
-            <Link href="/" className="flex items-center mb-5">
-                <span className="text-xl font-bold tracking-tight">
-                  TaharLuxe
-                </span>
-              </Link>
             {navItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
                 className={`flex items-center gap-3 rounded-md px-3 py-2 text-sm transition-colors ${
-                  pathname === item.href
-                    ? "bg-primary text-primary-foreground"
-                    : "hover:bg-muted"
+                  pathname === item.href ? "bg-primary text-primary-foreground" : "hover:bg-muted"
                 }`}
               >
                 <item.icon className="h-4 w-4" />
@@ -181,9 +143,12 @@ export default function DashboardLayout({
 
         {/* Main Content */}
         <main className="flex-1">
+          <div className="hidden h-14 items-center justify-end border-b px-4 md:flex">
+            {/* <ModeToggle /> */}
+          </div>
           <div className="p-4 md:p-6">{children}</div>
         </main>
       </div>
     </div>
-  );
+  )
 }

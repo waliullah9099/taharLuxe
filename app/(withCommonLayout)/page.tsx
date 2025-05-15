@@ -3,6 +3,7 @@ import FeaturedProducts from "@/components/home/featured-products";
 import CategoryGrid from "@/components/home/category-grid";
 import PromoSection from "@/components/home/promo-section";
 import Newsletter from "@/components/home/newsletter";
+import Blog from "@/components/home/blog";
 
 export default function Home() {
   return (
@@ -11,6 +12,7 @@ export default function Home() {
       <FeaturedProducts />
       <CategoryGrid />
       <PromoSection />
+      <Blog />
       <Newsletter />
     </div>
   );
